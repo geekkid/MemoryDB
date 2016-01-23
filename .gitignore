@@ -1,0 +1,47 @@
+Servers*/
+RemoteSystemsTempFiles
+*.jar
+*.class
+
+# Eclipse
+.classpath
+.project
+.settings/
+.metadata/
+.history/
+
+# Mac
+.DS_Store
+
+# Maven
+log/
+target/
+
+# Vim swp files
+*.swp
+*.swo
+*~
+
+# Ignore bundler config.
+/.bundle
+
+# Ignore the default SQLite database.
+/db/*.sqlite3
+/db/*.sqlite3-journal
+
+# Ignore all logfiles and tempfiles.
+/log/*.log
+/tmp
+
+# Ignore other unneeded files.
+database.yml
+doc/
+*.swp
+*~
+.idea
+.secret
+
+# Eclipse files
+.amateras
+*.eml
+*.iml
