@@ -1,4 +1,4 @@
-package dev.exercise1;
+package dev.memorydb;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;

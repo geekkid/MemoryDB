@@ -1,4 +1,4 @@
-package dev.exercise1;
+package dev.memorydb;
 
 import java.util.HashMap;
 import java.util.HashSet;
