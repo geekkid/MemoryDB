@@ -45,9 +45,13 @@ The Entity class encapsulates information related to a given ShoCardID. Among ot
   <tr>
     <td>Swift</td>
     <td><code>class Entity {
+    
 var shoCardID:String
+
 var creationTime:NSTimeInterval
+
 var publicKey: String
+
 }</code></td>
   </tr>
   <tr>
