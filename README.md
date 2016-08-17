@@ -24,7 +24,7 @@ Document organization
 
 This is the primary means of identifying an entity in the ShoCard platform. Any communication with the ShoCard platform via the ShoCard services requires that the application developer provides the ShoCardIDs of the various actors in the interaction. As an example, if the application needs to share data with another ShoCard App, the application instantiates the ShoCardService object with the device specific ShoCardID. To share the data the application then makes the "[shareData](#heading=h.h1o6uj3zfzo9)" call and provides the ShoCardID of the receiving entity and the data that needs to be shared.
 
-## * * *
+---
 
 
 ## Entity
@@ -69,7 +69,7 @@ String publicKey;
 </table>
 
 
-## * * *
+* * *
 
 
 ## ShoCardService
@@ -124,7 +124,7 @@ void shoCardCreated(ShoCard shoCard, SCError error);
 </table>
 
 
-## * * *
+* * *
 SaltedData
 
 A salted data object contains content and an associated "salt" used to make the storage of the string cryptographically secure. ([https://en.wikipedia.org/wiki/Salt_(cryptography)](https://en.wikipedia.org/wiki/Salt_(cryptography))[)](https://en.wikipedia.org/wiki/Salt_(cryptography))
