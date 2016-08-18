@@ -11,11 +11,8 @@ An application developer instantiates an object of the ShoCardService class and 
 Document organization
 
 * The [Data Types](#heading=h.nsgcy2oe38a7) section describes all the classes defined by the ShoCard SDK.
-
 * The [SDK methods](#heading=h.jheyexfken85) section describes the high-level methods of the ShoCardService class. These methods provide a high level abstraction to the methods exposed by the ShoCard platform. Further in the document there is a reference to all the low-level methods that can be accessed from the ShoCardService class allowing the SDK developer a more detailed access to the workings of the SDK. Most developers will use the high-level SDK methods in their apps and use the lower level methods for debugging, auditing and investigative purposes.
-
 * The [Sample code](#heading=h.2z95yniwcnbd) section provides some code samples and explain a simple use cases in which the SDK can be used. The code sample can be found in our github repository.
-
 * The [Low-level methods](#heading=h.pqpkhykwocqj) section digs deeper into the ShoCard SDK methods. This section breaks down the high-level methods into individual calls made by the SDK. This section is useful for learning more about the ShoCard SDK and platform.
 
 # Data Types
@@ -32,9 +29,7 @@ This is the primary means of identifying an entity in the ShoCard platform. Any 
 The Entity class encapsulates information related to a given ShoCardID. Among other fields it can be used to get the public RSA key for given ShoCardID. 
 
 * shoCardID: String
-
 * creationTime: Timestamp
-
 * publicKey: String
 
 Swift
@@ -71,91 +66,65 @@ This is the primary object that needs to be instantiated for interacting with th
 
 A new ShoCardID can be created by instantiating the ShoCardService object without a ShoCardID:
 
-<table>
-  <tr>
-    <td>Code</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Swift</td>
-    <td>ShoCardService(shoCard: Entity?)</td>
-  </tr>
-  <tr>
-    <td>Java</td>
-    <td>ShoCardService(Entity shoCard)</td>
-  </tr>
-  <tr>
-    <td>REST</td>
-    <td></td>
-  </tr>
-</table>
+Swift
+```swift
+    ShoCardService(shoCard: Entity?)
+```
+Java
+```java
+    ShoCardService(Entity shoCard)
+```
+REST
 
 
 A call to getShoCard will return the ShoCard object with the ShoCardID associated with that instance of the SDK.
 
-<table>
-  <tr>
-    <td>Code</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Swift</td>
-    <td>func getShoCard(completion:(shoCard:ShoCard?, error:SCError?) -> Void))</td>
-  </tr>
-  <tr>
-    <td>Java</td>
-    <td>void getShoCard(IShoCardCreated completion)
+Swift
+```swift
+    func getShoCard(completion:(shoCard:ShoCard?, error:SCError?) -> Void))
+```
+Java
+```java
+    void getShoCard(IShoCardCreated completion)
 
-interface IShoCardCreated {
-void shoCardCreated(ShoCard shoCard, SCError error);
-}</td>
-  </tr>
-  <tr>
-    <td>REST</td>
-    <td></td>
-  </tr>
-</table>
+    interface IShoCardCreated {
+        void shoCardCreated(ShoCard shoCard, SCError error);
+    }
+```
+REST
 
+---
 
-* * *
-SaltedData
+## SaltedData
 
 A salted data object contains content and an associated "salt" used to make the storage of the string cryptographically secure. ([https://en.wikipedia.org/wiki/Salt_(cryptography)](https://en.wikipedia.org/wiki/Salt_(cryptography))[)](https://en.wikipedia.org/wiki/Salt_(cryptography))
 
 * content:String
-
 * salt:String
 
-<table>
-  <tr>
-    <td>Code</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Swift</td>
-    <td>class SaltedData {
-var content:String
-var salt:String
-}</td>
-  </tr>
-  <tr>
-    <td>Java</td>
-    <td>class SaltedData {
-String content;
-String salt;
-}</td>
-  </tr>
-  <tr>
-    <td>JSON</td>
-    <td>{
-"content" : “string”
-“salt” : “string”
-}</td>
-  </tr>
-</table>
+Swift
+```swift
+    class SaltedData {
+        var content:String
+        var salt:String
+    }
+```
+Java
+```java
+    class SaltedData {
+        String content;
+        String salt;
+    }
+```
+JSON
+```json
+    {
+        "content" : “string”
+        “salt” : “string”
+    }
+```
 
-
-# * * *
+---
 
 
 ## Certification
