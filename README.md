@@ -56,8 +56,8 @@ Java
 JSON
 ```json
 	{
-		"shoCardID" : "string"
-		"timestamp" : "number"
+		"shoCardID" : "string",
+		"timestamp" : "number",
 		"publicKey" : "string"
 	}
 ```
