@@ -59,7 +59,6 @@ JSON
 
 * * *
 
-
 ## ShoCardService
 
 This is the primary object that needs to be instantiated for interacting with the ShoCard SDK. This object provides all of the data structures, the methods, and state management you will be using to interact with the ShoCard services. It is the responsibility of the app using the SDK to store the device specific ShoCardID.
@@ -119,7 +118,7 @@ Java
 JSON
 ```json
     {
-        "content" : "string"
+        "content" : "string",
         "salt" : "string"
     }
 ```
@@ -224,12 +223,12 @@ A share object encapsulates the data and the associated certification to verify 
 
 ## Overview
 
-1. Share Data
-2. Self Certify Data
-3. Certify Data
-4. Unsolicited Certify Data
-5. Verify Certification
-6. Request Share
+1. [Share Data](#share-data)
+2. [Self Certify Data](#self-certify-data)
+3. [Certify Data](#certify-data)
+4. [Unsolicited Certify Data](#unsolicited-certify-data)
+5. [Verify Certification](#verify-certification)
+6. [Request Share](#request-share)
 
 ## Language specific traits
 
