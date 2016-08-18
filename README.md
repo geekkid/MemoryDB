@@ -1,4 +1,3 @@
-Wed 17- 6:30PM ➜  ~ cat shocardv1.2.md
 # MemoryDB
 This is in response to an interview test I had recently. This is a simple implementation of a memory database with nested transactions
 
