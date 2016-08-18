@@ -37,45 +37,30 @@ The Entity class encapsulates information related to a given ShoCardID. Among ot
 
 * publicKey: String
 
-<table>
-  <tr>
-    <td>Code</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Swift</td>
-    <td><code>class Entity {
-    
-var shoCardID:String
-
-var creationTime:NSTimeInterval
-
-var publicKey: String
-
-}</code></td>
-  </tr>
-  <tr>
-    <td>Java</td>
-    <td>
+Swift
 ```swift
-    class Entity {  
-String shoCardID;  
-java.util.Timestamp timestamp;  
-String publicKey;  
-}
+	class Entity {
+		var shoCardID:String
+		var creationTime:NSTimeInterval
+		var publicKey: String
+	}
 ```
-</td>
-  </tr>
-  <tr>
-    <td>JSON</td>
-    <td>{
-"shoCardID" : “string”
-“timestamp” : “number”
-“publicKey” : “string”
-}</td>
-  </tr>
-</table>
-
+Java
+```java
+	class Entity {  
+		String shoCardID;  
+		java.util.Timestamp timestamp;  
+		String publicKey;  
+	}
+```
+JSON
+```json
+	{
+		"shoCardID" : "string"
+		"timestamp" : "number"
+		"publicKey" : "string"
+	}
+```
 
 * * *
 
