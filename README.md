@@ -119,8 +119,8 @@ Java
 JSON
 ```json
     {
-        "content" : "string”
-        "salt” : "string”
+        "content" : "string"
+        "salt" : "string"
     }
 ```
 
@@ -163,25 +163,25 @@ Note: The JSON representation of the Certification object differs slightly since
 #### JSON
 ```json
     {
-        "certificationID" : "string”,
-        "createDate” : "long”,
-        "certifier” : {
-            "content” : "string”,
-            "salt” : "string”
+        "certificationID" : "string",
+        "createDate" : "long",
+        "certifier" : {
+            "content" : "string",
+            "salt" : "string"
         },
-        "certifiee” : {
-            "content” : "string”,
-            "salt” : "string”
+        "certifiee" : {
+            "content" : "string",
+            "salt" : "string"
         },
-        "referenceCertificationID” : {
-            "content” : "string”,
-            "salt” : "string”
+        "referenceCertificationID" : {
+            "content" : "string",
+            "salt" : "string"
         },
-        "certifiiedData” : {
-            "key” : {
-                "keysalt” : "string”,
-                "value” : "string”,
-                "valuesalt” : "string”
+        "certifiiedData" : {
+            "key" : {
+                "keysalt" : "string",
+                "value" : "string",
+                "valuesalt" : "string"
             }
         }
     }
@@ -212,9 +212,9 @@ A share object encapsulates the data and the associated certification to verify 
 #### JSON
 ```json
     {
-        "data" : { "string” : "string” },
-        "certifications” : [
-            "<Certification JSON>”
+        "data" : { "string" : "string" },
+        "certifications" : [
+            "<Certification JSON>"
         ]
     }
 ```
@@ -959,7 +959,3 @@ Create
     <td></td>
   </tr>
 </table>
-
-
-
-Wed 17- 6:31PM ➜  ~
