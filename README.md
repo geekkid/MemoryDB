@@ -245,237 +245,184 @@ The Share Data method is intended to send data from one ShoCard entity to anothe
 Parameters:
 
 1. recipient:Entity
-
 2. sessionID:String - *A sessionID is either created by the caller or is passed on from an earlier call*
-
 3. data: Array of [Share](#heading=h.mpz6fe5l80oi) objects  - *A **Share** object groups data and associated certifications. One call to this SDK function can supply multiple instances of the Share ob**ject.*
-
 4. completion block: The SDK calls the completion block when the share operationcompletes. If there was an error sharing data the completion block will supply a non-null error parameter.
 
 Return: Void
 
-<table>
-  <tr>
-    <td>Code</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Swift</td>
-    <td>func shareData(recipient:Entity, sessionId:String?, data:[Share], completion:(error:SCError?) -> Void)</td>
-  </tr>
-  <tr>
-    <td>Java</td>
-    <td>void shareData(Entity recipient, String sessionId, Array<Share> data, IShareDataCompleted completion)
+#### Swift
+```swift
+func shareData(recipient:Entity, sessionId:String?, data:[Share], completion:(error:SCError?) -> Void)
+```
+#### Java
+```java
+void shareData(Entity recipient, String sessionId, Array<Share> data, IShareDataCompleted completion)
 
 interface IShareDataCompleted {
-void shareDataCompleted(SCError error);
-}</td>
-  </tr>
-  <tr>
-    <td>REST</td>
-    <td></td>
-  </tr>
-</table>
+    void shareDataCompleted(SCError error);
+}
+```
+#### REST
+```
+    Method: POST
+        <shocard-adaptor>/<version>/:shocardid/share-data
+    Method: PUT
+        <shocard-adaptor>/<version>/:shocardid/share-data/:sessionid/
+```
 
-
-## * * *
-Self-certify Data
+---
+## Self-certify Data
 
 The Self-certify Data SDK method creates a self-certification of any personally identifiable information (PII). This call is intended to create a proof on behalf of the user that they own the data and have certified it for later verification and certification by a third party.
 
-Parameters:
+#### Parameters:
 
 1. data: Dictionary/Map of String key to String value
-
 2. completion block: The result of a self-certify call is a Certification object. The completion block provides the Certification object upon successful creation of the a certification. The completion block will supply a non-null error parameter if the operation results in an error.
 
 Return: Void
 
-<table>
-  <tr>
-    <td>Code</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Swift</td>
-    <td>func selfCertifyData(data:[String:String], completion:(certification:Certification?, error:SCError?) -> Void)</td>
-  </tr>
-  <tr>
-    <td>Java</td>
-    <td>void selfCertifyData(Map<String, String> data, ICertificationsCreated completion)
+#### Swift
+```swift
+    func selfCertifyData(data:[String:String], completion:(certification:Certification?, error:SCError?) -> Void)
+```
+#### Java
+```java
+void selfCertifyData(Map<String, String> data, ICertificationsCreated completion)
 
 interface ICertificationsCreated {
-void certificationsCreated(Certification certification, SCError error);
+    void certificationsCreated(Certification certification, SCError error);
 }
-</td>
-  </tr>
-  <tr>
-    <td>REST</td>
-    <td></td>
-  </tr>
-</table>
+```
+#### REST
+```
+   Method: POST
+        <shocard-adaptor>/<version>/:shocardid/self-certify
+```
 
-
-## * * *
-Certify Data
+---
+## Certify Data
 
 The certify method is called to create a certification of previously shared data. This method, therefore, references a certification which was shared in the ["Share Data"](#heading=h.h1o6uj3zfzo9) call by the sender. The certification is created by the ShoCard entity instantiating the ShoCardService object. The ShoCard entity receiving the certification is passed in the parameter *certifiee*. When certifying data this method expects the caller to provide a reference certification based for additional verification. See examples below for more information.
 
 Note: When the caller does not intend to provide a reference certification the ["Unsolicited Certify Data"](#heading=h.pqh7gnkcgzio) method should be called.
 
-       	Parameters:
+#### Parameters:
 
 1. certifiee:Entity
-
 2. referenceCertification: Certification
-
 3. sessionID(optional):String - *A sessionID supplied here must be passed on from an earlier call*
-
 4. data: Dictionary/Map of String key to String value
 
 Return: Certification
 
-<table>
-  <tr>
-    <td>Code</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Swift</td>
-    <td>func certifyData(certifiee:Entity, sessionId:String?, referenceCertification: Certification, data:[String:String], completion:(certification:Certification?, error:SCError?) -> Void))</td>
-  </tr>
-  <tr>
-    <td>Java</td>
-    <td>void certifyData(Entity certifiee, String sessionId, Certification referenceCertification, Map<String, String> data, ICertificationCreated completion)
+#### Swift
+```swift
+func certifyData(certifiee:Entity, sessionId:String?, referenceCertification: Certification, data:[String:String], completion:(certification:Certification?, error:SCError?) -> Void))
+```
+#### Java
+```java
+void certifyData(Entity certifiee, String sessionId, Certification referenceCertification, Map<String, String> data, ICertificationCreated completion)
 
 interface ICertificationCreated {
-void certificationCreated(Certification certification, SCError error);
-}</td>
-  </tr>
-  <tr>
-    <td>REST</td>
-    <td></td>
-  </tr>
-</table>
+    void certificationCreated(Certification certification, SCError error);
+}
+```
+#### REST
+```
+   Method: POST
+        <shocard-adaptor>/<version>/:shocardid/certify
+```
 
-
-* * *
-
+---
 
 ## Unsolicited Certify Data
 
 The unsolicited certify method is called to create a certification with data. This method is used to create a certification and share certified data with the ShoCard entity receiving the certification. The certification is created by the ShoCard entity instantiating the ShoCardService object. The ShoCard entity receiving the certification is passed in the parameter *certifiee*. The ShoCard Entity receiving the certification (*certifiee*) is notified by the ShoCard platform using the ["Certification Received"](#heading=h.gzc57dcstvlk) notification.
 
-       	Parameters:
+#### Parameters:
 
 1. certifiee:Entity
-
 2. sessionID(optional):String - *A sessionID supplied here must be passed on from an earlier call*
-
 3. data: [String:String] - *A user can supply multiple **Share** to the certify data SDK function. This will result in multiple Certification objects being returned from this call*
 
-Return: [Certification] - *There will be one certification object returned per **Share** provided. The SDK user is required to store the Certification objects*
+Return: Certification
 
-<table>
-  <tr>
-    <td>Code</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Swift</td>
-    <td>func unsolicitedCertifyData(certifiee:Entity, sessionId:String?, data:[String:String], completion:(certifications:[Certifications]?, error:SCError?) -> Void))</td>
-  </tr>
-  <tr>
-    <td>Java</td>
-    <td>void unsolicitedCertifyData(Entity certifiee, String sessionId, Map<String, String> data, ICertificationsCreated completion)
+#### Swift
+```swift
+func unsolicitedCertifyData(certifiee:Entity, sessionId:String?, data:[String:String], completion:(certifications:[Certifications]?, error:SCError?) -> Void))
+```
+Java
+```java
+void unsolicitedCertifyData(Entity certifiee, String sessionId, Map<String, String> data, ICertificationsCreated completion)
 
 interface ICertificationsCreated {
-void certificationsCreated(Array<Certification> certifications, SCError error);
-}</td>
-  </tr>
-  <tr>
-    <td>REST</td>
-    <td></td>
-  </tr>
-</table>
-
+    void certificationsCreated(Array<Certification> certifications, SCError error);
+}
+```
+#### REST
+```
+   Method: POST
+        <shocard-adaptor>/<version>/:shocardid/unsolicited-certify
+```
 
 ## Verify Data
 
-       	Parameters:
+#### Parameters:
 
 1. verifiee:Entity - *The data will be verified for this ShoCard*
-
 2. data: [Share]
-
 3. completion block
 
-       	Return:
+Return: Bool (todo)
 
-1. Bool - *This SDK function returns true or false. More detailed SDK **methods** are provided to explore individual verification results of the **Share** *
+#### Swift
+```swift
+func verifyData(verifiee:Entity, data:[Share], completion:(isSuccessful:Bool?, error:SCError?) -> Void)) -> Bool
+```
 
-<table>
-  <tr>
-    <td>Code</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Swift</td>
-    <td>func verifyData(verifiee:Entity, data:[Share], completion:(isSuccessful:Bool?, error:SCError?) -> Void)) -> Bool</td>
-  </tr>
-  <tr>
-    <td>Java</td>
-    <td>Bool verifyData(Entity verifiee, Array<Share> data, IVerificationResult completion)
+#### Java
+```java
+Bool verifyData(Entity verifiee, Array<Share> data, IVerificationResult completion)
 
 interface IVerificationResult {
-void dataVerificationComplete(Boolean isSuccessful, SCError error);
-})</td>
-  </tr>
-  <tr>
-    <td>REST</td>
-    <td></td>
-  </tr>
-</table>
+    void dataVerificationComplete(Boolean isSuccessful, SCError error);
+})
+```
+#### REST
+```
+   Method: GET
+        <shocard-adaptor>/<version>/:shocardid/verify
+```
 
 
 ## Request Share
 
-       	Parameters:
+Parameters:
 
 1. toShoCard:Entity
-
 2. message(Optional): String
-
 3. sessionID: String - *The caller to this API is responsible for creating the session.*
-
 4. requestType: String
-
 5. requestedKeys (Optional): [String]
-
 6. expiration: Int - *Number of seconds for which this request is valid. The SDK receiving this request is responsible to check if the request has not expired before calling the shareData SDK function*
 
+Return: void
 
-
-       	Return: void
-
-<table>
-  <tr>
-    <td>Code</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Swift</td>
-    <td>func requestShare(toShoCard:Entity, message:String?, sessionID:String, requestedKeys:[String]?)</td>
-  </tr>
-  <tr>
-    <td>Java</td>
-    <td>void requestShare(Entity toShoCard, String message, String sessionID, Array<String> requestedKeys)</td>
-  </tr>
-  <tr>
-    <td>REST</td>
-    <td></td>
-  </tr>
-</table>
+#### Swift
+```swift
+func requestShare(toShoCard:Entity, message:String?, sessionID:String, requestedKeys:[String]?)
+```
+#### Java
+```java
+void requestShare(Entity toShoCard, String message, String sessionID, Array<String> requestedKeys)
+```
+#### REST
+```
+   Method: POST
+        <shocard-adaptor>/<version>/:shocardid/request-share
+```
 
 
 ## Notification Handling
@@ -487,30 +434,24 @@ The ShoCard SDK provides a means to process notifications received from another 
 Parameters:
 
 1. notification:Any serialized object - *The notification received from the ShoCard platform. This will be a JSON string in the current version of the SDK**.*
-
 2. notificationHandler(Optional): NotificationHandler - *See below for NotificationHandler delegate definition.*
 
-       	Return: void
+Return: void
 
-<table>
-  <tr>
-    <td>Code</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Swift</td>
-    <td>func processNotification(notification:String, notificationHandler:NotificationHandler?)</td>
-  </tr>
-  <tr>
-    <td>Java</td>
-    <td>void processNotification(String notification, NotificationHandler notificationHandler)</td>
-  </tr>
-  <tr>
-    <td>REST</td>
-    <td></td>
-  </tr>
-</table>
+#### Swift
+```swift
+func processNotification(notification:String, notificationHandler:NotificationHandler?)
+```
 
+#### Java
+```java
+void processNotification(String notification, NotificationHandler notificationHandler)
+```
+
+#### REST 
+```
+Register Callbacks
+```
 
 ### Register For Notification
 
