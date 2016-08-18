@@ -130,131 +130,105 @@ JSON
 ## Certification
 
 * certificationID:String
-
 * createDate:Timestamp
-
 * certifier:SaltedData
-
 * certifiee:SaltedData
-
 * referenceCertificationID (optional): SaltedData (used to reference a another certification which provided the original data)
-
 * certifiedData: Dictionary/Map of SaltedData key to SaltedData value
 
 Note: The JSON representation of the Certification object differs slightly since dictionary keys are represented by strings in JSON.
 
-<table>
-  <tr>
-    <td>Code</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Swift</td>
-    <td>class Certification {
-var certificationID:String
-var createDate:Timestamp
-var certifier:SaltedData
-var certifiee:SaltedData
-var referenceCertificationID:SaltedData
-var certifiedData:[SaltedData:SaltedData]
-}</td>
-  </tr>
-  <tr>
-    <td>Java</td>
-    <td>class SaltedData {
-String certificationID;
-java.util.Timestamp createDate;
-SaltedData certifier;
-SaltedData certifiee;
-SaltedData referenceCertificationID;
-Map<SaltedData, SaltedData> certifiedData;
-}</td>
-  </tr>
-  <tr>
-    <td>JSON</td>
-    <td>{
-"certificationID" : “string”,
-“createDate” : “long”,
-“certifier” : {
-“content” : “string”,
-“salt” : “string”
-},
-“certifiee” : {
-“content” : “string”,
-“salt” : “string”
-},
-“referenceCertificationID” : {
-“content” : “string”,
-“salt” : “string”
-},
-“certifiiedData” : {
-“key” : {
-“keysalt” : “string”,
-“value” : “string”,
-“valuesalt” : “string”
-}
-}
-}</td>
-  </tr>
-</table>
+#### Swift
+```swift
+    class Certification {
+        var certificationID:String
+        var createDate:Timestamp
+        var certifier:SaltedData
+        var certifiee:SaltedData
+        var referenceCertificationID:SaltedData
+        var certifiedData:[SaltedData:SaltedData]
+    }
+```
+#### Java
+```java
+    class Certification {
+        String certificationID;
+        java.util.Timestamp createDate;
+        SaltedData certifier;
+        SaltedData certifiee;
+        SaltedData referenceCertificationID;
+        Map<SaltedData, SaltedData> certifiedData;
+    }
+```
+#### JSON
+```json
+    {
+        "certificationID" : “string”,
+        “createDate” : “long”,
+        “certifier” : {
+            “content” : “string”,
+            “salt” : “string”
+        },
+        “certifiee” : {
+            “content” : “string”,
+            “salt” : “string”
+        },
+        “referenceCertificationID” : {
+            “content” : “string”,
+            “salt” : “string”
+        },
+        “certifiiedData” : {
+            “key” : {
+                “keysalt” : “string”,
+                “value” : “string”,
+                “valuesalt” : “string”
+            }
+        }
+    }
+```
 
-
-## * * *
-
-
+---
 ## Share
 
 A share object encapsulates the data and the associated certification to verify the data. The SDK user may choose to share only data without any certification in which case the receiver will not be able to perform any verification on the data provided.
 
 * data: Dictionary/Map of String key to String value
-
 * certifications(optional): Array of Certification
 
-<table>
-  <tr>
-    <td>Code</td>
-    <td></td>
-  </tr>
-  <tr>
-    <td>Swift</td>
-    <td>class Share {
-var data:[String, String]
-var certifications:[Certification]?
-}</td>
-  </tr>
-  <tr>
-    <td>Java</td>
-    <td>class Share {
-Map<String, String> data;
-Array<Certification> certifications;
-}</td>
-  </tr>
-  <tr>
-    <td>JSON</td>
-    <td>{
-"data" : { “string” : “string” },
-“certifications” : [
-“<Certification JSON>”
-]
-}</td>
-  </tr>
-</table>
-
-
+#### Swift
+```swift
+    class Share {
+        var data:[String, String]
+        var certifications:[Certification]?
+    }
+```
+#### Java
+```java
+    class Share {
+        Map<String, String> data;
+        Array<Certification> certifications;
+    }
+```
+#### JSON
+```json
+    {
+        "data" : { “string” : “string” },
+        “certifications” : [
+            “<Certification JSON>”
+        ]
+    }
+```
+---
+---
 # SDK methods
 
 ## Overview
 
 1. Share Data
-
 2. Self Certify Data
-
 3. Certify Data
-
 4. Unsolicited Certify Data
-
 5. Verify Certification
-
 6. Request Share
 
 ## Language specific traits
