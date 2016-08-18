@@ -1,3 +1,4 @@
+Wed 17- 6:30PM ➜  ~ cat shocardv1.2.md
 # MemoryDB
 This is in response to an interview test I had recently. This is a simple implementation of a memory database with nested transactions
 
@@ -26,7 +27,7 @@ This is the primary means of identifying an entity in the ShoCard platform. Any 
 
 ## Entity
 
-The Entity class encapsulates information related to a given ShoCardID. Among other fields it can be used to get the public RSA key for given ShoCardID. 
+The Entity class encapsulates information related to a given ShoCardID. Among other fields it can be used to get the public RSA key for given ShoCardID.
 
 * shoCardID: String
 * creationTime: Timestamp
@@ -34,27 +35,27 @@ The Entity class encapsulates information related to a given ShoCardID. Among ot
 
 Swift
 ```swift
-	class Entity {
-		var shoCardID:String
-		var creationTime:NSTimeInterval
-		var publicKey: String
-	}
+       	class Entity {
+       		var shoCardID:String
+       		var creationTime:NSTimeInterval
+       		var publicKey: String
+       	}
 ```
 Java
 ```java
-	class Entity {  
-		String shoCardID;  
-		java.util.Timestamp timestamp;  
-		String publicKey;  
-	}
+       	class Entity {
+       		String shoCardID;
+       		java.util.Timestamp timestamp;
+       		String publicKey;
+       	}
 ```
 JSON
 ```json
-	{
-		"shoCardID" : "string",
-		"timestamp" : "number",
-		"publicKey" : "string"
-	}
+       	{
+       		"shoCardID" : "string",
+       		"timestamp" : "number",
+       		"publicKey" : "string"
+       	}
 ```
 
 * * *
@@ -119,8 +120,8 @@ Java
 JSON
 ```json
     {
-        "content" : “string”
-        “salt” : “string”
+        "content" : "string”
+        "salt” : "string”
     }
 ```
 
@@ -163,25 +164,25 @@ Note: The JSON representation of the Certification object differs slightly since
 #### JSON
 ```json
     {
-        "certificationID" : “string”,
-        “createDate” : “long”,
-        “certifier” : {
-            “content” : “string”,
-            “salt” : “string”
+        "certificationID" : "string”,
+        "createDate” : "long”,
+        "certifier” : {
+            "content” : "string”,
+            "salt” : "string”
         },
-        “certifiee” : {
-            “content” : “string”,
-            “salt” : “string”
+        "certifiee” : {
+            "content” : "string”,
+            "salt” : "string”
         },
-        “referenceCertificationID” : {
-            “content” : “string”,
-            “salt” : “string”
+        "referenceCertificationID” : {
+            "content” : "string”,
+            "salt” : "string”
         },
-        “certifiiedData” : {
-            “key” : {
-                “keysalt” : “string”,
-                “value” : “string”,
-                “valuesalt” : “string”
+        "certifiiedData” : {
+            "key” : {
+                "keysalt” : "string”,
+                "value” : "string”,
+                "valuesalt” : "string”
             }
         }
     }
@@ -212,9 +213,9 @@ A share object encapsulates the data and the associated certification to verify 
 #### JSON
 ```json
     {
-        "data" : { “string” : “string” },
-        “certifications” : [
-            “<Certification JSON>”
+        "data" : { "string” : "string” },
+        "certifications” : [
+            "<Certification JSON>”
         ]
     }
 ```
@@ -241,7 +242,7 @@ All methods use the ShoCardID that was used to instantiate the ShoCardService ob
 
 ## Share Data
 
-The Share Data method is intended to send data from one ShoCard entity to another trusted ShoCard entity.  
+The Share Data method is intended to send data from one ShoCard entity to another trusted ShoCard entity.
 
 Parameters:
 
@@ -324,7 +325,7 @@ The certify method is called to create a certification of previously shared data
 
 Note: When the caller does not intend to provide a reference certification the ["Unsolicited Certify Data"](#heading=h.pqh7gnkcgzio) method should be called.
 
-	Parameters:
+       	Parameters:
 
 1. certifiee:Entity
 
@@ -367,7 +368,7 @@ void certificationCreated(Certification certification, SCError error);
 
 The unsolicited certify method is called to create a certification with data. This method is used to create a certification and share certified data with the ShoCard entity receiving the certification. The certification is created by the ShoCard entity instantiating the ShoCardService object. The ShoCard entity receiving the certification is passed in the parameter *certifiee*. The ShoCard Entity receiving the certification (*certifiee*) is notified by the ShoCard platform using the ["Certification Received"](#heading=h.gzc57dcstvlk) notification.
 
-	Parameters:
+       	Parameters:
 
 1. certifiee:Entity
 
@@ -403,7 +404,7 @@ void certificationsCreated(Array<Certification> certifications, SCError error);
 
 ## Verify Data
 
-	Parameters:
+       	Parameters:
 
 1. verifiee:Entity - *The data will be verified for this ShoCard*
 
@@ -411,7 +412,7 @@ void certificationsCreated(Array<Certification> certifications, SCError error);
 
 3. completion block
 
-	Return:
+       	Return:
 
 1. Bool - *This SDK function returns true or false. More detailed SDK **methods** are provided to explore individual verification results of the **Share** *
 
@@ -441,7 +442,7 @@ void dataVerificationComplete(Boolean isSuccessful, SCError error);
 
 ## Request Share
 
-	Parameters:
+       	Parameters:
 
 1. toShoCard:Entity
 
@@ -455,9 +456,9 @@ void dataVerificationComplete(Boolean isSuccessful, SCError error);
 
 6. expiration: Int - *Number of seconds for which this request is valid. The SDK receiving this request is responsible to check if the request has not expired before calling the shareData SDK function*
 
-	
 
-	Return: void
+
+       	Return: void
 
 <table>
   <tr>
@@ -491,7 +492,7 @@ Parameters:
 
 2. notificationHandler(Optional): NotificationHandler - *See below for NotificationHandler delegate definition.*
 
-	Return: void
+       	Return: void
 
 <table>
   <tr>
@@ -521,7 +522,7 @@ Parameters:
 
 1. notificationHandler: NotificationHandler - *See below for NotificationHandler delegate definition.*
 
-	Return: void
+       	Return: void
 
 <table>
   <tr>
@@ -547,7 +548,7 @@ Parameters:
 
 ## Shared Data Received
 
-A ShoCard ID (receiver) can receive a message from another ShoCard ID (sender) to share data some piece of data. This data will be enveloped for the receiver and signed by the sender. A ShoCard Entity 
+A ShoCard ID (receiver) can receive a message from another ShoCard ID (sender) to share data some piece of data. This data will be enveloped for the receiver and signed by the sender. A ShoCard Entity
 
 <table>
   <tr>
@@ -595,7 +596,7 @@ This SDK method is called when the notification contains a message related to re
 
 ## Share Request Received
 
-This SDK method is called when the notificaton contains a message requesting the recipient for 
+This SDK method is called when the notificaton contains a message requesting the recipient for
 
 # Sample Code
 
@@ -611,7 +612,7 @@ The ShoCard SDK provides low level apis to interactions with ShoCard service  RE
 
 ![image alt text](image_1.png)
 
-**ShoCard** 
+**ShoCard**
 
 **Attributes**
 
@@ -697,7 +698,7 @@ Update
 
 Delete (N/A)
 
-**Seal** 
+**Seal**
 
 **Attributes**
 
@@ -767,7 +768,7 @@ Update (N/A)
 
 Delete (N/A)
 
-**Certification** 
+**Certification**
 
 **Attributes**
 
@@ -865,7 +866,7 @@ Delete
 </table>
 
 
-**ShoStoreData** 
+**ShoStoreData**
 
 **Attributes**
 
@@ -935,7 +936,7 @@ Delete (N/A)
 
 **Attributes**
 
-	ShareData
+       	ShareData
 
 **methods**
 
@@ -961,3 +962,5 @@ Create
 </table>
 
 
+
+Wed 17- 6:31PM ➜  ~
